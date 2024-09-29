@@ -1,6 +1,6 @@
 package lk.ijse.pos.Security.jwt;
 
-import ch.qos.logback.core.util.StringUtil;
+
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
