@@ -20,4 +20,14 @@ public class Item {
     @ManyToOne
     @JoinColumn(name = "category_id")
     private ItemCategory itemCategory;
+
+    public Item(Long id, String name, Double price, ItemCategory itemCategory) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.itemCategory = itemCategory;
+    }
+
+    public Item() {
+    }
 }
