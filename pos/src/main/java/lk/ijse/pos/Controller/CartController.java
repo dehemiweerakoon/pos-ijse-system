@@ -22,6 +22,10 @@ public class CartController {
     }
     @GetMapping("/{cartId}/cart")
     public  ResponseEntity<Cart> getCart(@PathVariable Long cartId){
-        return ResponseEntity.status(HttpStatus.OK).body(cartService.getCart(cartId));
+        try{
+            return ResponseEntity.status(HttpStatus.OK).body(cartService.getCart(cartId));
+        }catch (Exception e){
+            return  ResponseEntity.status(HttpStatus.OK).body(new Cart());
+        }
     }
 }

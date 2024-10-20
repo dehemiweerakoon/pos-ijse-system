@@ -25,7 +25,7 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public Cart addItemToCart(Long cartId, Long itemId, int qty) {
-        Cart cart = cartRepository.findById(cartId).orElse(new Cart());
+        Cart cart = cartRepository.findById(cartId).orElse(new Cart(cartId));
         Item item = itemRepository.findById(itemId).orElseThrow(()-> new NoSuchElementException("No such Item Exist"));
 
         CartItem cartItem = new CartItem();
