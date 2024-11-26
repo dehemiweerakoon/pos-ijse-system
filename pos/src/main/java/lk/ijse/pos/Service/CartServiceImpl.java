@@ -9,6 +9,7 @@ import lk.ijse.pos.Repository.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 
 @Service
@@ -28,6 +29,16 @@ public class CartServiceImpl implements CartService {
         Cart cart = cartRepository.findById(cartId).orElse(new Cart(cartId));
         Item item = itemRepository.findById(itemId).orElseThrow(()-> new NoSuchElementException("No such Item Exist"));
 
+        List<CartItem> avail = cart.getCartItems();
+
+        for (CartItem cartItem : avail) {
+            if(cartItem.getItem().getId().equals(itemId)){
+                cartItem.setQuantity(cartItem.getQuantity() + qty);
+                 cartItemRepository.save(cartItem);
+                 return cartRepository.save(cart);
+            }
+        }
+
         CartItem cartItem = new CartItem();
 
         cartItem.setItem(item);
@@ -42,6 +53,7 @@ public class CartServiceImpl implements CartService {
         return cartRepository.save(cart);
     }
 
+    //  get cart with the property 
     @Override
     public Cart getCart(Long id) {
         return cartRepository.findById(id).orElseThrow(()-> new NoSuchElementException("There is no such cart with id"));

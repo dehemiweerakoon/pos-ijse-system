@@ -10,6 +10,7 @@ public interface ItemService {
     List<Item> getAllItem();
     Item getItemById(Long id);
     Item createItem(Item item);
-   void deleteItem(Long id);
+    void deleteItem(Long id);
     Item updateItem(Long id,Item item);
+    List<Item> getItemByCategory(Long category);
 }

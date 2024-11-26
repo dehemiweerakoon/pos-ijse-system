@@ -40,4 +40,8 @@ public class ItemController {
         itemService.deleteItem(id);
        return ResponseEntity.status(HttpStatus.OK).body("Item Deleted");
     }
+    @GetMapping("/item/category/{id}")
+    public ResponseEntity<List<Item>> getItemsByCategory(@PathVariable Long id){
+        return ResponseEntity.status(HttpStatus.OK).body( itemService.getItemByCategory(id));
+    }
 }

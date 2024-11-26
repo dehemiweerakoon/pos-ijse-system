@@ -43,4 +43,9 @@ public class ItemServiceImpl implements  ItemService {
 
         return itemRepository.save(item1);
     }
+
+    @Override
+    public List<Item> getItemByCategory(Long category) {
+        return itemRepository.findByItemCategoryId(category);
+    }
 }
