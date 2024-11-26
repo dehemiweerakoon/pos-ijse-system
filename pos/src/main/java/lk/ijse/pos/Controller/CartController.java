@@ -28,4 +28,12 @@ public class CartController {
             return  ResponseEntity.status(HttpStatus.OK).body(new Cart());
         }
     }
+    @DeleteMapping("/{cartId}/cartdelete/{itemId}/{qty}")
+    public ResponseEntity<?> getDelete(@PathVariable Long cartId,@PathVariable Long itemId,@PathVariable int qty){
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(cartService.deleteItemFromCart(cartId,itemId,qty));
+        }catch (Exception e){
+            return  ResponseEntity.status(HttpStatus.OK).body("hello");
+        }
+    }
 }

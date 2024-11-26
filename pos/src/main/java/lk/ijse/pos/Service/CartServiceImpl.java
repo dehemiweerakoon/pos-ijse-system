@@ -58,4 +58,26 @@ public class CartServiceImpl implements CartService {
     public Cart getCart(Long id) {
         return cartRepository.findById(id).orElseThrow(()-> new NoSuchElementException("There is no such cart with id"));
     }
+
+    @Override
+    public Cart deleteItemFromCart(Long cartId, Long itemId, int qty) {
+        Cart cart = cartRepository.findById(cartId).orElseThrow(()-> new NoSuchElementException("No such Item Exist"));
+        List<CartItem> avail = cart.getCartItems();
+        for (CartItem cartItem : avail) {
+           CartItem cartItem1= cartItemRepository.findById(cartItem.getId()).orElseThrow(()-> new NoSuchElementException("No such Item Exist"));
+            System.out.println(itemId+""+cartItem1.getItem().getName());
+           if(cartItem1.getItem().getId().equals(itemId)){
+               try{
+                   cart.setTotalAmount(cart.getTotalAmount() - (cartItem.getItem().getPrice() * cartItem.getQuantity()));
+                   avail.remove(cartItem); // Remove from the cart's list
+                   cartItemRepository.deleteById(cartItem.getId());
+               }catch (Exception e){
+                   System.out.println("deleted error");
+               }
+
+               return null;
+           }
+        }
+        return  null;
+    }
 }
