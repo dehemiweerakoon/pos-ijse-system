@@ -33,9 +33,11 @@ public class CartServiceImpl implements CartService {
 
         for (CartItem cartItem : avail) {
             if(cartItem.getItem().getId().equals(itemId)){
-                cartItem.setQuantity(cartItem.getQuantity() + qty);
+                 cartItem.setQuantity(cartItem.getQuantity() + qty);
+                 cart.setTotalAmount(cart.getTotalAmount() + cartItem.getPrice());
                  cartItemRepository.save(cartItem);
                  return cartRepository.save(cart);
+                 // added the cart items ....
             }
         }
 
@@ -65,7 +67,6 @@ public class CartServiceImpl implements CartService {
         List<CartItem> avail = cart.getCartItems();
         for (CartItem cartItem : avail) {
            CartItem cartItem1= cartItemRepository.findById(cartItem.getId()).orElseThrow(()-> new NoSuchElementException("No such Item Exist"));
-            System.out.println(itemId+""+cartItem1.getItem().getName());
            if(cartItem1.getItem().getId().equals(itemId)){
                try{
                    cart.setTotalAmount(cart.getTotalAmount() - (cartItem.getItem().getPrice() * cartItem.getQuantity()));
