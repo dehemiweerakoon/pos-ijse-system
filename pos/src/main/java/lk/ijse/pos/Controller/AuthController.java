@@ -36,7 +36,7 @@ public class AuthController {
 
             return ResponseEntity.badRequest().body(new MessageResponse("Username is already taken"));
         }
-        if(userRepository.existsByEmail(user.getEmail())){
+        if(userRepository.existsByEmail(user.getEmail())){  
             return ResponseEntity.badRequest().body(new MessageResponse("Email is Already used"));
         }
         User newuser = new User();
