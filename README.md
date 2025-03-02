@@ -38,7 +38,8 @@ A Point of Sale (POS) System developed as part of the CMJD106/107 Backend Develo
 -MySQL Database
 ![image](https://github.com/user-attachments/assets/96d17830-defa-4af3-8808-9f40e681e804)
 
-![image](https://github.com/user-attachments/assets/3a712bbb-1a65-482e-91da-2d98857dd977)
+![image](https://github.com/user-attachments/assets/73108703-3192-4898-bd4d-f5ac12090feb)
+
 
 
 
