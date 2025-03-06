@@ -21,7 +21,8 @@ public class FileDataServiceImpl implements FileDataService{
 
     final String currentPath = System.getProperty("user.dir");
     @Override
-    public String uploadImageFileData(MultipartFile file) throws IOException {
+    public String uploadImageFileData(MultipartFile file) throws Exception {
+
         String currentPath = System.getProperty("user.dir");
 
         // Print the current path
@@ -36,7 +37,7 @@ public class FileDataServiceImpl implements FileDataService{
     }
 
     @Override
-    public byte[] getFileData(String filename) throws IOException {
+    public byte[] getFileData(String filename) throws Exception {
         Optional<FileData> dbImageData = fileDataRepository.findByName(filename);
         //System.out.println(dbImageData.get().getFilePath());
         String filepath = dbImageData.get().getFilePath();

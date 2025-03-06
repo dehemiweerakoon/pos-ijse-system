@@ -20,13 +20,13 @@ public class FilePathController {
     private FileDataService fileDataService;
 
     @PostMapping("/file")
-    public ResponseEntity<?> uploadFile(@RequestParam("image")MultipartFile file) throws IOException{
+    public ResponseEntity<?> uploadFile(@RequestParam("image")MultipartFile file) throws Exception {
         String uploadImage = fileDataService.uploadImageFileData(file);
         return ResponseEntity.status(HttpStatus.OK).body(uploadImage);
     }
 
     @GetMapping("/file/{filename}")
-    public ResponseEntity<?> downloadFile(@PathVariable String filename) throws IOException {
+    public ResponseEntity<?> downloadFile(@PathVariable String filename) throws Exception {
     byte[] imageData = fileDataService.getFileData(filename);
     return ResponseEntity.status(HttpStatus.OK).contentType(MediaType.valueOf("image/png"))
             .body(imageData);
