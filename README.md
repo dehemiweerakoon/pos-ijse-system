@@ -189,4 +189,4 @@ Database Configuration: edit in your application properties
       
    4. Push to the branch (git push origin feature/your-feature).
 
-   5.Open a pull request.
+   5. Open a pull request.
