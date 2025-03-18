@@ -1,7 +1,9 @@
 package lk.ijse.pos.Service;
 
 import lk.ijse.pos.Entity.Item;
+import lk.ijse.pos.Entity.Stock;
 import lk.ijse.pos.Repository.ItemRepository;
+import lk.ijse.pos.Repository.StockRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +14,9 @@ import java.util.NoSuchElementException;
 public class ItemServiceImpl implements  ItemService {
     @Autowired
     private ItemRepository itemRepository;
+
+    @Autowired
+    private StockRepository stockRepository;
 
 
     @Override
@@ -26,7 +31,13 @@ public class ItemServiceImpl implements  ItemService {
 
     @Override
     public Item createItem(Item item) {
-        return itemRepository.save(item);
+
+        Item itemsaved = itemRepository.save(item);
+        Stock stock = new Stock();
+        stock.setItem(itemsaved);
+        stock.setQuantity(0);
+        stockRepository.save(stock);
+        return itemsaved;
     }
 
     @Override
