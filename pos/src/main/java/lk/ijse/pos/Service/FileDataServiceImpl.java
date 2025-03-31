@@ -38,11 +38,16 @@ public class FileDataServiceImpl implements FileDataService{
 
     @Override
     public byte[] getFileData(String filename) throws Exception {
-        Optional<FileData> dbImageData = fileDataRepository.findByName(filename);
-        //System.out.println(dbImageData.get().getFilePath());
-        String filepath = dbImageData.get().getFilePath();
-        byte[] images = Files.readAllBytes(new File(filepath).toPath());
-        // images added to the image file in the description...///
-        return images;
+        try{
+            Optional<FileData> dbImageData = fileDataRepository.findByName(filename);
+            //System.out.println(dbImageData.get().getFilePath());
+            String filepath = dbImageData.get().getFilePath();
+            byte[] images = Files.readAllBytes(new File(filepath).toPath());
+            // images added to the image file in the description...///
+            return images;
+        }catch (Exception e){
+            System.out.println("Error in reading file");
+        }
+
     }
 }
